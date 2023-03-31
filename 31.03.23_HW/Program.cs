@@ -15,20 +15,17 @@ namespace _31._03._23_HW
             text = "";
             history = new Caretaker();
         }
-
         public void Write(string text)
         {
             history.Push(new TextEditorMemento(this.text));
             this.text += text;
         }
-
         public void Undo()
         {
             TextEditorMemento memento = history.Undo();
             if (memento != null)
                 text = memento.GetText();
         }
-
         public void Redo()
         {
             TextEditorMemento memento = history.Redo();
@@ -38,7 +35,6 @@ namespace _31._03._23_HW
                 history.Push(new TextEditorMemento(text));
             }
         }
-
         public string GetText()
         {
             return text;
@@ -64,7 +60,6 @@ namespace _31._03._23_HW
             redoMementos = new Stack<TextEditorMemento>();
             this.limit = limit;
         }
-
         public void Push(TextEditorMemento memento)
         {
             mementos.Push(memento);
@@ -72,7 +67,6 @@ namespace _31._03._23_HW
                 mementos = new Stack<TextEditorMemento>(mementos.Take(limit));
             redoMementos.Clear();
         }
-
         public TextEditorMemento Undo()
         {
             if (mementos.Count > 1)
@@ -83,7 +77,6 @@ namespace _31._03._23_HW
             }
             return null;
         }
-
         public TextEditorMemento Redo()
         {
             if (redoMementos.Count > 0)
@@ -99,9 +92,9 @@ namespace _31._03._23_HW
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("1.Undoing \t2.Redoing");
+            Console.WriteLine("1.Undoing\n2.Redoing");
             TextEditor texteditor = new TextEditor();
-            Console.WriteLine("Enter text:");
+            Console.WriteLine("Enter the text:");
             while (true)
             {
                 string input = Console.ReadLine();
